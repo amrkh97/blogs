@@ -1,0 +1,52 @@
+package com.c3s.blogs.Controller;
+
+import com.c3s.blogs.Entity.UserModel;
+import com.c3s.blogs.Service.UserService;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@Log4j2
+public class UserController {
+    @Autowired
+    private UserService service;
+
+
+    @GetMapping("/user/all")
+    public ResponseEntity<List<UserModel>> findAllUsers() {
+        return ResponseEntity.ok()
+                .body(service.getUsers());
+    }
+
+    @PostMapping("/user/add")
+    public ResponseEntity<String> addUser(@RequestBody UserModel userModel) {
+        return ResponseEntity.ok()
+                .body(service.addUser(userModel).toString());
+    }
+
+    @GetMapping("/user/")
+    @ResponseBody
+    public ResponseEntity<UserModel> getUserByUserName(@PathVariable(name = "username") String userName){
+        return ResponseEntity.ok()
+                .body(service.getUserByUserName(userName));
+    }
+    /*
+    @GetMapping("/user/find")
+    @ResponseBody
+    public ResponseEntity<List<UserModel>> getUserByFirstName(@PathVariable(name = "firstname") String firstName){
+        return ResponseEntity.ok()
+                .body(service.getUserByFirstName(firstName));
+    }
+
+    @GetMapping("/user/find")
+    @ResponseBody
+    public ResponseEntity<List<UserModel>> getUserByLastName(@PathVariable(name = "lastname") String lastName){
+        return ResponseEntity.ok()
+                .body(service.getUserByLastName(lastName));
+    }
+    */
+}

@@ -22,7 +22,7 @@ public class CategoryService {
     }
 
     public Category getCategoryByName(String name){
-        return repository.findByName(name);
+        return repository.findByCategoryName(name);
     }
 
     public Boolean deleteCategoryByID(Long id){

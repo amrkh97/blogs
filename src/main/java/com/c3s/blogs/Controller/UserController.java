@@ -23,30 +23,33 @@ public class UserController {
     }
 
     @PostMapping("/user/add")
-    public ResponseEntity<String> addUser(@RequestBody UserModel userModel) {
+    public ResponseEntity<UserModel> addUser(@RequestBody UserModel userModel) {
         return ResponseEntity.ok()
-                .body(service.addUser(userModel).toString());
+                .body(service.addUser(userModel));
     }
 
-    @GetMapping("/user/")
+    @GetMapping("/user/{username}")
     @ResponseBody
     public ResponseEntity<UserModel> getUserByUserName(@PathVariable(name = "username") String userName){
         return ResponseEntity.ok()
                 .body(service.getUserByUserName(userName));
     }
-    /*
-    @GetMapping("/user/find")
-    @ResponseBody
-    public ResponseEntity<List<UserModel>> getUserByFirstName(@PathVariable(name = "firstname") String firstName){
-        return ResponseEntity.ok()
-                .body(service.getUserByFirstName(firstName));
-    }
 
     @GetMapping("/user/find")
     @ResponseBody
-    public ResponseEntity<List<UserModel>> getUserByLastName(@PathVariable(name = "lastname") String lastName){
+    public ResponseEntity<List<UserModel>> getUserByFirstNameOrLastName(@RequestParam(name = "firstname") String firstName,
+                                                                        @RequestParam(name = "lastname") String lastName){
+        if(firstName != null) {
+            return ResponseEntity.ok()
+                    .body(service.getUserByFirstName(firstName));
+        }
+        if(lastName != null) {
+            return ResponseEntity.ok()
+                    .body(service.getUserByLastName(lastName));
+        }
+
         return ResponseEntity.ok()
-                .body(service.getUserByLastName(lastName));
+                .body(null);
     }
-    */
+
 }

@@ -9,5 +9,5 @@ public interface BlogPostRepo extends JpaRepository<BlogPost,Long> {
     List<BlogPost> findByUserUserName(String name);
     List<BlogPost> findByUserFirstName(String firstName);
     List<BlogPost> findByUserLastName(String lastName);
-    List<BlogPost> findByCategoryName(String categoryName);
+    List<BlogPost> findByCategoryCategoryName(String categoryName);
 }

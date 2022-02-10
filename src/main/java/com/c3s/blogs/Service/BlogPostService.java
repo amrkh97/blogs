@@ -41,7 +41,7 @@ public class BlogPostService {
     }
 
     public List<BlogPost> getBlogByCategoryName(String name){
-        return repository.findByCategoryName(name);
+        return repository.findByCategoryCategoryName(name);
     }
 
     public Boolean deleteBlogPost(BlogPost blogPost){

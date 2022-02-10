@@ -39,4 +39,9 @@ public class UserService {
     public UserModel getUserByUserName(String UserName){
         return repository.findByUserName(UserName);
     }
+
+    public Boolean deleteUserById(Long id) {
+        repository.deleteById(id);
+        return !repository.existsById(id);
+    }
 }

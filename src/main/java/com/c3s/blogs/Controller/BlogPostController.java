@@ -29,6 +29,12 @@ public class BlogPostController {
                 .body(service.addBlogPost(blogPost));
     }
 
+    @PutMapping("/post/update")
+    public ResponseEntity<BlogPost> updateBlogPost(@RequestBody BlogPost blogPost) {
+        return ResponseEntity.ok()
+                .body(service.addBlogPost(blogPost));
+    }
+
     @GetMapping("/post/user/{username}")
     public ResponseEntity<List<BlogPost>> findAllBlogPostsByUserName(@PathVariable("username") String userName) {
         return ResponseEntity.ok()

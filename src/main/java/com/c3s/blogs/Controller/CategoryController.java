@@ -21,12 +21,12 @@ public class CategoryController {
     }
 
     @PostMapping("/category/add")
-    public ResponseEntity<Category> addCategory(Category category){
+    public ResponseEntity<Category> addCategory(@RequestBody Category category){
         return ResponseEntity.ok().body(service.addCategory(category));
     }
 
     @PutMapping("/category/update")
-    public ResponseEntity<Category> updateCategory(Category category){
+    public ResponseEntity<Category> updateCategory(@RequestBody Category category){
         return ResponseEntity.ok().body(service.addCategory(category));
     }
 

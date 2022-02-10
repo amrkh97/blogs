@@ -1,7 +1,6 @@
 package com.c3s.blogs.Service;
 
 import com.c3s.blogs.Entity.BlogPost;
-import com.c3s.blogs.Entity.UserModel;
 import com.c3s.blogs.Repository.BlogPostRepo;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,24 +26,32 @@ public class BlogPostService {
         return repository.save(blogPost);
     }
 
-    public BlogPost getBlogByUserUserName(String userName){
+    public List<BlogPost> getBlogByUserUserName(String userName){
 
         return repository.findByUserUserName(userName);
     }
 
-    public BlogPost getBlogByUserFirstName(String firstName){
+    public List<BlogPost> getBlogByUserFirstName(String firstName){
 
         return repository.findByUserFirstName(firstName);
     }
-    public BlogPost getBlogByUserLastName(String lastName){
+    public List<BlogPost> getBlogByUserLastName(String lastName){
 
-        return repository.findByUserUserName(lastName);
+        return repository.findByUserLastName(lastName);
+    }
+
+    public List<BlogPost> getBlogByCategoryName(String name){
+        return repository.findByCategoryName(name);
     }
 
     public Boolean deleteBlogPost(BlogPost blogPost){
         Long id = blogPost.getId();
         repository.delete(blogPost);
-        return !repository.existsById(id.intValue());
+        return !repository.existsById(id);
     }
 
+    public Boolean deleteBlogPostById(Long id){
+        repository.deleteById(id);
+        return !repository.existsById(id);
+    }
 }

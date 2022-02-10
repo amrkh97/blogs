@@ -19,7 +19,7 @@ public class Category {
     private Long id;
 
     @Column(name = "CATEGORY_NAME")
-    private String name;
+    private String categoryName;
 
 
 }

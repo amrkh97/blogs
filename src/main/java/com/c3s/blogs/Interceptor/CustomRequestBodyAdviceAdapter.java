@@ -29,6 +29,7 @@ public class CustomRequestBodyAdviceAdapter extends RequestBodyAdviceAdapter {
     public Object afterBodyRead(Object body, HttpInputMessage inputMessage, MethodParameter parameter, Type targetType,
             Class<? extends HttpMessageConverter<?>> converterType) {
         loggingService.logRequest(httpServletRequest, body);
+        loggingService.logRequest(httpServletRequest, inputMessage);
         
         return super.afterBodyRead(body, inputMessage, parameter, targetType, converterType);
     }

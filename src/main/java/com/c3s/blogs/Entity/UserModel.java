@@ -1,4 +1,5 @@
 package com.c3s.blogs.Entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,6 +31,7 @@ public class UserModel {
 
     @Column(name = "PASSWORD")
     @ToString.Exclude
+    @JsonIgnore
     private String password;
 
     /*
@@ -41,3 +43,4 @@ public class UserModel {
     }
     */
 }
+

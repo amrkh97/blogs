@@ -49,6 +49,12 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.crnk/crnk-core -->
+		<dependency>
+			<groupId>io.crnk</groupId>
+			<artifactId>crnk-core</artifactId>
+			<version>3.4.20210509072026</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

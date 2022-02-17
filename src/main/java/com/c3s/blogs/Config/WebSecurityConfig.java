@@ -32,8 +32,9 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
-                .authorizeRequests().antMatchers("/*",
-                        "/user/**", "/post/**", "/comment/**", "/category/**")
+                .authorizeRequests().antMatchers("/*","/api/**",
+                        "/api/user/**", "/blog/**", "/api/comment/**",
+                        "/api/category/**")
                 .permitAll().anyRequest().authenticated().and().
                 exceptionHandling().and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);

@@ -1,24 +1,26 @@
 package com.c3s.blogs.Entity;
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.crnk.core.resource.annotations.JsonApiId;
+import io.crnk.core.resource.annotations.JsonApiResource;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.*;
-
 @Getter
 @Setter
 @ToString
-@Data
-@Entity
-@Table(name = "CATEGORIES")
+@JsonApiResource(type = "category")
 public class Category {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+
+    @JsonApiId
     private Long id;
 
-    @Column(name = "CATEGORY_NAME")
+    public Category(Long id, String categoryName) {
+        this.id = id;
+        this.categoryName = categoryName;
+    }
+
+    @JsonProperty
     private String categoryName;
 
 

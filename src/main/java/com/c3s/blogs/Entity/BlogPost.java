@@ -1,40 +1,41 @@
 package com.c3s.blogs.Entity;
 
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.crnk.core.resource.annotations.JsonApiId;
+import io.crnk.core.resource.annotations.JsonApiRelation;
+import io.crnk.core.resource.annotations.JsonApiRelationId;
+import io.crnk.core.resource.annotations.JsonApiResource;
+import lombok.*;
 import java.util.List;
 
 
 @Getter
 @Setter
 @ToString
-@Data
-@Entity
-@Table(name = "BLOG_POSTS")
+@NoArgsConstructor
+@JsonApiResource(type = "blog")
 public class BlogPost {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @JsonApiId
     private Long id;
 
-    @Column(name = "TEXT")
+    @JsonProperty
     private String text;
 
-    @ManyToOne
-    @JoinColumn(name="POSTED_BY", referencedColumnName="id")
+    public BlogPost(Long id, String text, UserModel user, Category category) {
+        this.id = id;
+        this.text = text;
+        this.user = user;
+        this.category = category;
+    }
+
+    @JsonApiRelationId
     private UserModel user;
 
-    @OneToOne
-    @JoinColumn(name="POST_CATEGORY", referencedColumnName="id")
+    @JsonApiRelationId
     private Category category;
 
-    @OneToMany
-    @JoinColumn(name = "COMMENTS", referencedColumnName="id")
+    @JsonApiRelation
     private List<Comment> comment;
 
 

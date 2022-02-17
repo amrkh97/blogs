@@ -1,35 +1,37 @@
 package com.c3s.blogs.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.crnk.core.resource.annotations.JsonApiId;
+import io.crnk.core.resource.annotations.JsonApiResource;
+import lombok.*;
 
 @Getter
 @Setter
 @ToString
-@Data
-@Entity
-@Table(name = "USERS")
+@NoArgsConstructor
+@JsonApiResource(type = "user")
 public class UserModel {
-    @ToString.Include
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @JsonApiId
     private Long id;
 
-    @Column(name = "USER_NAME")
+    public UserModel(Long id, String userName, String firstName, String lastName, String password) {
+        this.id = id;
+        this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+    }
+
+    @JsonProperty
     private String userName;
 
-    @Column(name = "FIRST_NAME")
+    @JsonProperty
     private String firstName;
 
-    @Column(name = "LAST_NAME")
+    @JsonProperty
     private String lastName;
 
-    @Column(name = "PASSWORD")
+    @JsonProperty
     @ToString.Exclude
     @JsonIgnore
     private String password;

@@ -1,32 +1,33 @@
 package com.c3s.blogs.Entity;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.crnk.core.resource.annotations.JsonApiId;
+import io.crnk.core.resource.annotations.JsonApiRelationId;
+import io.crnk.core.resource.annotations.JsonApiResource;
+import lombok.*;
 
 @Getter
 @Setter
 @ToString
-@Data
-@Entity
-@Table(name = "COMMENTS")
+@NoArgsConstructor
+@JsonApiResource(type = "comment")
 public class Comment {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @JsonApiId
     private Long id;
 
-    @Column(name = "TEXT")
+    @JsonProperty
     private String text;
 
-    @ManyToOne
-    @JoinColumn(name="WRITTEN_BY", referencedColumnName="id")
+    public Comment(Long id, String text, UserModel user, BlogPost blogPost) {
+        this.id = id;
+        this.text = text;
+        this.user = user;
+        this.blogPost = blogPost;
+    }
+
+    @JsonApiRelationId
     private UserModel user;
 
-    @OneToOne
-    @JoinColumn(name = "FOR_POST", referencedColumnName = "id")
+    @JsonApiRelationId
     private BlogPost blogPost;
 
 }

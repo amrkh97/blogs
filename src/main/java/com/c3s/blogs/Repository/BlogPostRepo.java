@@ -9,7 +9,7 @@ import java.util.List;
 
 @EnableScan
 @Repository
-public interface BlogPostRepo extends CrudRepository<BlogPost,Long> {
+public interface BlogPostRepo extends CrudRepository<BlogPost,String> {
     List<BlogPost> findByUserUserName(String name);
     List<BlogPost> findByUserFirstName(String firstName);
     List<BlogPost> findByUserLastName(String lastName);

@@ -15,7 +15,7 @@ import java.util.List;
 @Component
 public class blogPostDTO {
 
-    private Long id;
+    private String id;
 
     private String text;
 

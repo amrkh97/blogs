@@ -45,12 +45,12 @@ public class BlogPostService {
     }
 
     public Boolean deleteBlogPost(BlogPost blogPost){
-        Long id = blogPost.getId();
+        String id = blogPost.getId();
         repository.delete(blogPost);
         return !repository.existsById(id);
     }
 
-    public Boolean deleteBlogPostById(Long id){
+    public Boolean deleteBlogPostById(String id){
         repository.deleteById(id);
         return !repository.existsById(id);
     }

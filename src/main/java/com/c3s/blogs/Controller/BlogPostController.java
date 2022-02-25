@@ -43,7 +43,7 @@ public class BlogPostController {
     }
 
     @DeleteMapping("/post/delete/{id}")
-    public ResponseEntity<ResponseModel> deleteBlogPostById(@PathVariable("id") Long id) {
+    public ResponseEntity<ResponseModel> deleteBlogPostById(@PathVariable("id") String id) {
         int responseCode = -1;
         String responseMessage = "";
         try{

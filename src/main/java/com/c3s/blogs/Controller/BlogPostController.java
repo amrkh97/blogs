@@ -13,23 +13,24 @@ import java.util.List;
 
 @RestController
 @Log4j2
+@RequestMapping("/api/")
 public class BlogPostController {
     @Autowired
     private BlogPostService service;
 
-    @GetMapping("/post/all")
+    @GetMapping("/post")
     public ResponseEntity<List<BlogPost>> findAllBlogPosts() {
         return ResponseEntity.ok()
                 .body(service.getBlogPosts());
     }
 
-    @PostMapping("/post/add")
+    @PostMapping("/post")
     public ResponseEntity<BlogPost> addBlogPost(@RequestBody BlogPost blogPost) {
         return ResponseEntity.ok()
                 .body(service.addBlogPost(blogPost));
     }
 
-    @PutMapping("/post/update")
+    @PutMapping("/post")
     public ResponseEntity<BlogPost> updateBlogPost(@RequestBody BlogPost blogPost) {
         return ResponseEntity.ok()
                 .body(service.addBlogPost(blogPost));

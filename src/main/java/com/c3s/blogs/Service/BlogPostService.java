@@ -18,7 +18,7 @@ public class BlogPostService {
 
     public List<BlogPost> getBlogPosts() {
 
-        return repository.findAll();
+        return (List) repository.findAll();
     }
 
     public BlogPost addBlogPost(BlogPost blogPost){
@@ -28,12 +28,12 @@ public class BlogPostService {
 
     public List<BlogPost> getBlogByUserUserName(String userName){
 
-        return repository.findByUserUserName(userName);
+        return (List) repository.findByUserUserName(userName);
     }
 
     public List<BlogPost> getBlogByUserFirstName(String firstName){
 
-        return repository.findByUserFirstName(firstName);
+        return (List) repository.findByUserFirstName(firstName);
     }
     public List<BlogPost> getBlogByUserLastName(String lastName){
 

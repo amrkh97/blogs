@@ -1,5 +1,8 @@
 package com.c3s.blogs.Service;
 
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.c3s.blogs.Config.DynamoDBConfig;
 import com.c3s.blogs.Entity.BlogPost;
 import com.c3s.blogs.Repository.BlogPostRepo;
 import lombok.extern.log4j.Log4j2;
@@ -15,6 +18,8 @@ public class BlogPostService {
     @Autowired
     private BlogPostRepo repository;
 
+    @Autowired
+    private DynamoDBConfig config;
 
     public List<BlogPost> getBlogPosts() {
 
@@ -23,6 +28,9 @@ public class BlogPostService {
 
     public BlogPost addBlogPost(BlogPost blogPost){
 
+        AmazonDynamoDB dynamoDB = config.amazonDynamoDB();
+        DynamoDBMapper mapper = new DynamoDBMapper(dynamoDB);
+        mapper.save(blogPost);
         return repository.save(blogPost);
     }
 
